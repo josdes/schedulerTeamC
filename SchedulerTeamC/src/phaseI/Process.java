@@ -3,8 +3,7 @@ package phaseI;
 import java.util.ArrayList;
 
 public abstract class Process {
-    int priority;
-	int type;
+    int priority; 
 	int work;
 	ArrayList<Block> blockList = new ArrayList<Block>();
 	
@@ -13,19 +12,18 @@ public abstract class Process {
 	}
 	
 	public abstract int generateWork(); 
-	public abstract ArrayList<Block> generateBlocks();
+	public abstract void generateBlocks();
+	public abstract int getType();
 	
 	public int getPriority() {
 		return priority;
 	}
-	public int getType() {
-		return type;
-	}
+
 	public int getWork() {
 		return work;
 	}
 	public int getBlockTotal() {
-		if (type == 2) {
+		if (this.getType() == 2) {
 			return 0;
 		}
 		else {

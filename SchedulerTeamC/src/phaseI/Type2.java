@@ -8,6 +8,10 @@ public class Type2 extends Process {
 		super(priority);
 		work = generateWork();
 	}
+	
+	public int getType() {
+		return 2;
+	}
  
 	public int generateWork() { 
 		return RandomNumberGenerator.random("WorkII");

@@ -9,6 +9,10 @@ public class Type3 extends Process {
 		work = generateWork();
 	}
 	
+	public int getType() {
+		return 2;
+	}
+	
 	public int generateWork() { 
 		return RandomNumberGenerator.random("WorkIII");
 	}
