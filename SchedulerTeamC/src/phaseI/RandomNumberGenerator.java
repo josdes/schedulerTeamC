@@ -3,20 +3,20 @@ package phaseI;
 import java.util.Random;
 
 public class RandomNumberGenerator {
-	Random rand = new Random();
+	static Random rand = new Random();
 	
 	//Random Number within a given Range
-	public double random(int floor, int ceiling) {
+	public static int random(int floor, int ceiling) {
 		return rand.nextInt((ceiling+1) - floor) + floor;
 	}
 	
 	//Returns a random number between 0 and 1
-	public double random(){
+	public static double random(){
 		return Math.random();
 	}
 	
 	//Returns a random number with a non-uniform distribution
-	public double random(String key) {
+	public static int random(String key) {
 		if (key == "workII") {
 			return nonUniform(200, 600, 5/3);
 		}
@@ -34,9 +34,8 @@ public class RandomNumberGenerator {
 		}
 	}
 	
-	public double nonUniform(int low, int high, int frac) {
-		return Math.ceil((low + (high - low)* Math.pow(random(), frac)));
+	public static int nonUniform(int low, int high, int frac) {
+		return (int) Math.ceil((low + (high - low)* Math.pow(random(), frac)));
 	}
-	
 	
 }
