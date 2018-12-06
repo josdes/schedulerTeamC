@@ -17,8 +17,8 @@ public class Type4 extends Process {
 		return RandomNumberGenerator.random(400, 1000);
 	}
 
-	public ArrayList<Block> generateBlocks() { 
-		return null;
+	public void generateBlocks() { 
+		 
 	}
 
 }

@@ -3,7 +3,8 @@ package phaseI;
 public abstract class Block {
 	int start;
 	int length;
-	String resource;
+	
+	public abstract String getResource();
 	
 	public Block(int start) {
 		this.start = start;
@@ -13,7 +14,4 @@ public abstract class Block {
 		return length;
 	}
 	
-	public String getResource() {
-		return resource;
-	}
 }
