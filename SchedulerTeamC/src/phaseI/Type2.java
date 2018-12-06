@@ -1,12 +1,9 @@
 package phaseI;
 
-import java.util.ArrayList;
-
 public class Type2 extends Process {
 	
 	public Type2(int priority) {
-		super(priority);
-		work = generateWork();
+		super(priority); 
 	}
 	
 	public int getType() {
@@ -14,11 +11,11 @@ public class Type2 extends Process {
 	}
  
 	public int generateWork() { 
-		return RandomNumberGenerator.random("WorkII");
+		return RandomNumberGenerator.random("workII");
 	}
 
-	public ArrayList<Block> generateBlocks() { 
-		return null;
+	public void generateBlocks() { 
+		
 	}
 
 }

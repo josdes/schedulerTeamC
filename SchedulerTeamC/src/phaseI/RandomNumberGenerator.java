@@ -23,7 +23,7 @@ public class RandomNumberGenerator {
 		if (key == "workIII") {
 			return nonUniform(150, 500, 5/2);
 		}
-		if (key == "processIII") {
+		if (key == "blockIII") {
 			return nonUniform(25, 75, 7/3);
 		}
 		if (key == "lengthC") {

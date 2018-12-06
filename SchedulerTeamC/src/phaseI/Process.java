@@ -9,6 +9,8 @@ public abstract class Process {
 	
 	public Process(int p) {
 		priority = p;
+		work = generateWork();
+		generateBlocks();
 	}
 	
 	public abstract int generateWork(); 

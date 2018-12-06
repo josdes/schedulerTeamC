@@ -1,12 +1,9 @@
 package phaseI;
 
-import java.util.ArrayList;
-
 public class Type1 extends Process {
 	
 	public Type1(int priority) {
 		super(priority);
-		work = generateWork();
 	}
 	
 	public int getType() {
