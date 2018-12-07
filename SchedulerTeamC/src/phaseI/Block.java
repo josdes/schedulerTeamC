@@ -2,7 +2,7 @@ package phaseI;
 
 public abstract class Block {
 	int start;
-	int length;
+	int work;
 	
 	public abstract String getResource();
 	
@@ -10,8 +10,12 @@ public abstract class Block {
 		this.start = start;
 	}
 	
-	public int getLength() {
-		return length;
+	public int getWork() {
+		return work;
+	}
+	
+	public void reduceBlock(int num) {
+		work = work - num;
 	}
 	
 }

@@ -31,7 +31,7 @@ public abstract class Process {
 		else {
 			int sum = 0;
 			for(int i = 0; i< blockList.size(); i++) {
-				sum += blockList.get(i).getLength();
+				sum += blockList.get(i).getWork();
 			}
 			return sum;
 		}
@@ -41,8 +41,8 @@ public abstract class Process {
 		return blockList;
 	}
 	
-	public String generateReport(int id) {
-		return "";
+	public void reduceWork(int num) {
+		work = work - num;
 	}
 	
 }

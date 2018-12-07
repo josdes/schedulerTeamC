@@ -26,7 +26,7 @@ public class RandomNumberGenerator {
 		if (key == "blockIII") {
 			return nonUniform(25, 75, 7/3);
 		}
-		if (key == "lengthC") {
+		if (key == "workC") {
 			return nonUniform(100, 400, 2);
 		}
 		else {
