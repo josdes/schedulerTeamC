@@ -2,45 +2,36 @@ package phaseI;
 
 import java.util.ArrayList;
 
-public class Queue {
-	public Process bottom;
-	public ArrayList<Process> queue = new ArrayList<Process>();
+public class Queue<X> {
+	public X bottom = null;
+	public ArrayList<X> queue = new ArrayList<X>();
 
-	public Queue(Process next, ArrayList<Process> base) {
+	public Queue(X next, ArrayList<X> base) {
 		bottom = next;
 		queue = base;
 	}
 	
-	public Queue add(Process next) { 
-		queue.add(bottom);
-		return new Queue(next, queue); 
+	public boolean isEmpty() {
+		return (queue.size() == 0 && bottom == null);
 	}
 	
-	public Process getBottom() throws Exception {
-		return bottom;
+	public Queue<X> add(X next) { 
+		ArrayList<X> temp = new ArrayList<X>();
+		temp.add(bottom);
+		temp.addAll(queue);
+		return new Queue<X>(next, queue); 
+	}
+	
+	public X getBottom() throws Exception {
+		//effect statement: also removes the bottom from the queue
+		//                   in doing this, everything shifts
+		X temp = bottom;
+		bottom = queue.get(0);
+		queue.remove(0);
+		return temp;
 	} 
 	
-	public ArrayList<Process> getQueue() throws Exception {
+	public ArrayList<X> getQueue() throws Exception {
 		return queue;
-	}
- 
-	public int totalQueue() {
-		return totalBlock() + totalWork();
-	} 
-	
-	public int totalBlock() {
-		int sum = bottom.getBlockTotal();
-		for(int i = 0; i < queue.size(); i++) {
-			sum += queue.get(i).getBlockTotal();
-		}
-		return sum;
-	}
-
-	public int totalWork() {
-		int sum = bottom.getWork();
-		for(int i = 0; i < queue.size(); i++) {
-			sum += queue.get(i).getWork();
-		}
-		return sum;
 	}
 }
