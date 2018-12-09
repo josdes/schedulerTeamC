@@ -1,9 +1,9 @@
 package phaseI;
 
-public class Type2 extends Process {
+public class Process2 extends Process {
 	
-	public Type2(int priority) {
-		super(priority); 
+	public Process2(int priority, int timeOn) {
+		super(priority, timeOn);
 	}
 	
 	public int getType() {

@@ -1,21 +1,30 @@
 package phaseI;
 
-public class ProcessesGenerator {
+public class ProcessGenerator {
 	
-	public Process generateProcess() {
+	public Queue<Process> populateReady(int limit){
+		Queue<Process> getReady = new Queue<Process>(); 
+		int current = 0;
+		while (current <= limit) {
+			Process next = generateProcess(current);
+			current += next.getWork();
+		}
+	}
+	
+	public Process generateProcess(int timeOn) {
 		double num = RandomNumberGenerator.random();
 		int p = generatePriority();
 		if (num < 0.50) {
-			return new Type1(p);
+			return new Process1(p, timeOn);
 		}
 		else if (num < 0.80) {
-			return new Type2(p);
+			return new Process2(p, timeOn);
 		}
 		else if (num < 0.97) {
-			return new Type3(p);
+			return new Process3(p, timeOn);
 		}
 		else {
-			return new Type4(p);
+			return new Process4(p, timeOn);
 		}
 		
 	}

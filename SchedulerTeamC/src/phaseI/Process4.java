@@ -1,11 +1,11 @@
 package phaseI;
 
-public class Type4 extends Process {
+public class Process4 extends Process {
 	
 	int interval = RandomNumberGenerator.random(40, 120);
 	
-	public Type4(int priority) {
-		super(priority);
+	public Process4(int priority, int timeOn) {
+		super(priority, timeOn);
 	}
 	
 	public int getType() {

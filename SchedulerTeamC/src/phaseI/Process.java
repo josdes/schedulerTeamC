@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public abstract class Process {
     int priority; 
 	int work;
+	int timeOn;
 	ArrayList<Block> blockList = new ArrayList<Block>();
 	
-	public Process(int p) {
+	public Process(int p, int t) {
 		priority = p;
 		work = generateWork();
+		timeOn = t;
 		generateBlocks();
 	}
 	

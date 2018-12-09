@@ -6,20 +6,24 @@ public class Queue<X> {
 	public X bottom = null;
 	public ArrayList<X> queue = new ArrayList<X>();
 
-	public Queue(X next, ArrayList<X> base) {
-		bottom = next;
-		queue = base;
+	public Queue() {
 	}
 	
 	public boolean isEmpty() {
 		return (queue.size() == 0 && bottom == null);
 	}
 	
-	public Queue<X> add(X next) { 
-		ArrayList<X> temp = new ArrayList<X>();
-		temp.add(bottom);
-		temp.addAll(queue);
-		return new Queue<X>(next, queue); 
+	public void add(X next) { 
+		if (this.isEmpty()) {
+			bottom = next;
+		}
+		else {
+			ArrayList<X> temp = new ArrayList<X>();
+			temp.add(bottom);
+			temp.addAll(queue);
+			bottom = next;
+			queue = temp;
+		}
 	}
 	
 	public X getBottom() throws Exception {
