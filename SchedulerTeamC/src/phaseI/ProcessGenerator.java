@@ -2,16 +2,17 @@ package phaseI;
 
 public class ProcessGenerator {
 	
-	public Queue<Process> populateReady(int limit){
-		Queue<Process> getReady = new Queue<Process>(); 
+	public static Queue<Process> populateReady(int limit){
+		Queue<Process> getReady = new PlainQueue<Process>(); 
 		int current = 0;
 		while (current <= limit) {
 			Process next = generateProcess(current);
 			current += next.getWork();
 		}
+		return getReady;
 	}
 	
-	public Process generateProcess(int timeOn) {
+	public static Process generateProcess(int timeOn) {
 		double num = RandomNumberGenerator.random();
 		int p = generatePriority();
 		if (num < 0.50) {
@@ -30,7 +31,7 @@ public class ProcessGenerator {
 	}
 	
 
-	public int generatePriority() {
+	public static int generatePriority() {
 		double num = RandomNumberGenerator.random();
 		if (num < 0.50) {
 			return 1;
