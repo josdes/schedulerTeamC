@@ -14,8 +14,8 @@ public abstract class Block {
 		return work;
 	}
 	
-	public void reduceBlock(int num) {
-		work = work - num;
+	public void updateBlock(int num) {
+		work -= num;
 	}
 	
 }

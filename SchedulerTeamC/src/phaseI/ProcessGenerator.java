@@ -1,12 +1,16 @@
 package phaseI;
 
+import java.util.ArrayList;
+
 public class ProcessGenerator {
 	
-	public static Queue<Process> populateReady(int limit){
-		Queue<Process> getReady = new PlainQueue<Process>(); 
+	public static ArrayList<Process> populateReady(int limit){
+		ArrayList<Process> getReady = new ArrayList<Process>(); 
 		int current = 0;
+		int time = 0;
 		while (current <= limit) {
-			Process next = generateProcess(current);
+			Process next = generateProcess(time);
+			time += RandomNumberGenerator.random(10, 810);
 			current += next.getWork();
 		}
 		return getReady;

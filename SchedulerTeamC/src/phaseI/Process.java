@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public abstract class Process {
     int priority; 
-	int work;
+	int work; 
+	int workDone = 0;
 	int timeOn;
 	ArrayList<Block> blockList = new ArrayList<Block>();
 	
 	public Process(int p, int t) {
 		priority = p;
-		work = generateWork();
+		work = generateWork(); 
 		timeOn = t;
 		generateBlocks();
 	}
@@ -19,6 +20,10 @@ public abstract class Process {
 	public abstract void generateBlocks();
 	public abstract int getType();
 	
+	public Boolean isDone() {
+		return workDone == work;
+	}
+	
 	public int getPriority() {
 		return priority;
 	}
@@ -26,6 +31,11 @@ public abstract class Process {
 	public int getWork() {
 		return work;
 	}
+	
+	public int getWorkDone() {
+		return workDone;
+	}
+	
 	public int getBlockTotal() {
 		if (this.getType() == 2) {
 			return 0;
@@ -43,8 +53,8 @@ public abstract class Process {
 		return blockList;
 	}
 	
-	public void reduceWork(int num) {
-		work = work - num;
+	public void updateWork(int num) { 
+		workDone += num;
 	}
 	
 }

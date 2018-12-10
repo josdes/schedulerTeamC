@@ -2,19 +2,29 @@ package phaseI;
 
 import java.util.ArrayList;
 
-public abstract class Queue<X> { 
+public class Queue<X> { 
 	public ArrayList<X> queue = new ArrayList<X>();
+	public Test<X> pred;
 
-	public Queue() {
+	public Queue(Test<X> pred) {
+		this.pred = pred;
 	}
 	
-	public abstract void sortQueue();
-	public abstract void add(X next);
+	public void add(X next) {
+		int i = 0;
+		while(!(pred.p(next, queue.get(i))) && i<=queue.size()) {
+			i++;
+		}
+		queue.add(i, next);
+	}
+	
+	public void addFront(X next) {
+		queue.add(0, next);
+	}
 	
 	public boolean isEmpty() {
 		return (queue.size() == 0);
 	}
-	
 	
 	public X pop() throws Exception {
 		//effect statement: also removes the bottom from the queue

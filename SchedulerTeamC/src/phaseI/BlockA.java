@@ -10,6 +10,5 @@ public class BlockA extends Block {
 	public String getResource() {
 		return "A";
 	}
-	
 
 }
