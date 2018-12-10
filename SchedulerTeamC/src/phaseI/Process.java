@@ -27,6 +27,10 @@ public abstract class Process {
 	public int getPriority() {
 		return priority;
 	}
+	
+	public int getTimeOn() {
+		return timeOn;
+	}
 
 	public int getWork() {
 		return work;
@@ -34,6 +38,10 @@ public abstract class Process {
 	
 	public int getWorkDone() {
 		return workDone;
+	}
+	
+	public int getWorkLeft() {
+		return getWork() - getWorkDone();
 	}
 	
 	public int getBlockTotal() {
@@ -51,6 +59,20 @@ public abstract class Process {
 	}
 	public ArrayList<Block> getBlockList(){
 		return blockList;
+	}
+	
+	public Boolean blocks() {
+		return !blockList.isEmpty();
+	}
+	
+	public Block getNextBlock() throws Exception { 
+		if (blocks()) {
+			return blockList.get(0); 
+		}
+		else {
+			throw new Exception("blocklist is empty");
+		}
+		
 	}
 	
 	public void updateWork(int num) { 

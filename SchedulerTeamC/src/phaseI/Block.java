@@ -14,6 +14,10 @@ public abstract class Block {
 		return work;
 	}
 	
+	public int getStart() {
+		return start;
+	}
+	
 	public void updateBlock(int num) {
 		work -= num;
 	}

@@ -10,7 +10,7 @@ public class Queue<X> {
 		this.pred = pred;
 	}
 	
-	public void add(X next) {
+	public void addIn(X next) {
 		int i = 0;
 		while(!(pred.p(next, queue.get(i))) && i<=queue.size()) {
 			i++;
@@ -29,9 +29,14 @@ public class Queue<X> {
 	public X pop() throws Exception {
 		//effect statement: also removes the bottom from the queue
 		//                   in doing this, everything shifts
-		X temp = queue.get(0);
-		queue.remove(0);
-		return temp;
+		if (queue.isEmpty()) {
+			throw new Exception("Queue is empty");
+		}
+		else {
+			X temp = queue.get(0);
+			queue.remove(0);
+			return temp;
+		}
 	} 
 	
 	public ArrayList<X> getQueue() throws Exception {
