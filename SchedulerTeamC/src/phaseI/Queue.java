@@ -42,4 +42,13 @@ public class Queue<X> {
 	public ArrayList<X> getQueue() throws Exception {
 		return queue;
 	}
+	
+	public X getNext() throws Exception {
+		if (queue.isEmpty()) {
+			throw new Exception("Queue is empty");
+		}
+		else {
+			return queue.get(0);
+		}
+	}
 }
