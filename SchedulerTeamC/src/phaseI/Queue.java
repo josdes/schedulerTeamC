@@ -25,6 +25,11 @@ public class Queue<X> {
 	public boolean isEmpty() {
 		return (queue.size() == 0);
 	}
+
+	public int getLength()
+	{
+		return queue.size();
+	}
 	
 	public X pop() throws Exception {
 		//effect statement: also removes the bottom from the queue
