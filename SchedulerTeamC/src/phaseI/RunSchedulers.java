@@ -20,6 +20,12 @@ public class RunSchedulers {
 	
 	public Scheduler[] schedulers = {fifo, rr, shortest, left, done};
 	
+	public void runAll() {
+		for(int i = 0; i<schedulers.length; i++) {
+			run(schedulers[i]);
+		}
+	}
+	
 	public void run(Scheduler scheduler) { 
 		int clock = 0;  
 		int timeSlice = 40; 
