@@ -13,11 +13,11 @@ public abstract class Process {
 		priority = p;
 		work = generateWork(); 
 		timeOn = t;
-		generateBlocks();
+		generateBlocks(work);
 	}
 	
 	public abstract int generateWork(); 
-	public abstract void generateBlocks();
+	public abstract void generateBlocks(int w);
 	public abstract int getType();
 	
 	public Boolean isDone() {

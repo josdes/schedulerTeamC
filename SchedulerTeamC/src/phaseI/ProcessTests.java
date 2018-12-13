@@ -9,10 +9,13 @@ class ProcessTests {
 	@Test
 	void test() {
 		
-		Process1 P1 = new Process1()
+		Process1 SampleProcessA = new Process1(1, 1);
+		Process2 SampleProcessB = new Process2(2, 2);
+		Process3 SampleProcessC = new Process3(3, 3);
+		Process4 SampleProcessD = new Process4(4, 4);
 		
-		assertEquals(P2.getPriority(), 0);
-		
+		assertEquals(SampleProcessA.getType(), 1);
+		assertTrue((25 <= (SampleProcessA.generateWork())) && SampleProcessA.generateWork() <= 75);
 		
 
 	}

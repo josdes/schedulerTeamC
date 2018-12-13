@@ -1,8 +1,6 @@
 package phaseI;
 
-public class Process3 extends Process {
-	public int interval = RandomNumberGenerator.random("blockIII");
-	
+public class Process3 extends Process {	
 	public Process3(int priority, int timeOn) {
 		super(priority, timeOn);
 	}
@@ -15,9 +13,10 @@ public class Process3 extends Process {
 		return RandomNumberGenerator.random("workIII");
 	}
 
-	public void generateBlocks() { 
-		int start = RandomNumberGenerator.random(0, interval);
-		for (int i = start; i< work; i+=interval) {
+	public void generateBlocks(int work) {  
+		int i = RandomNumberGenerator.random("blockIII");
+		while (i< work) {
+			int interval = RandomNumberGenerator.random("blockIII");
 			double resource = RandomNumberGenerator.random();
 			if (resource < 0.5) {
 				blockList.add(new BlockA(i));
@@ -28,6 +27,7 @@ public class Process3 extends Process {
 			else {
 				blockList.add(new BlockC(i));
 			}
+			i += interval;
 		}
 	}
 

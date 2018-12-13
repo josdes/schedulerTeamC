@@ -14,7 +14,7 @@ public class Process2 extends Process {
 		return RandomNumberGenerator.random("workII");
 	}
 
-	public void generateBlocks() { 
+	public void generateBlocks(int work) { 
 		
 	}
 

@@ -14,7 +14,7 @@ public class Process1 extends Process {
 		return RandomNumberGenerator.random(25, 75);
 	}
  
-	public void generateBlocks() { 
+	public void generateBlocks(int work) { 
 		double block = RandomNumberGenerator.random();
 		if (block < 0.40) {
 			
