@@ -15,7 +15,7 @@ class RandomNumberGeneratorTests {
 		assertTrue((25 <= RandomNumberGenerator.random("blockIII")) && (RandomNumberGenerator.random("blockIII") <= 75));
 		assertTrue((100 <= RandomNumberGenerator.random("workC")) && (RandomNumberGenerator.random("workC") <= 400));
 		assertEquals(RandomNumberGenerator.random("Hello"), -1);
-		assertTrue((1 <= RandomNumberGenerator.nonUniform(1, 5, 1/2)) && (RandomNumberGenerator.nonUniform(1, 5, 1/2) <= 5));
+		assertTrue((10 <= RandomNumberGenerator.nonUniform(10, 50, 1/2)) && (RandomNumberGenerator.nonUniform(1, 5, 1/2) <= 50));
 	}
 
 }
