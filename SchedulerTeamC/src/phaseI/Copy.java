@@ -38,7 +38,7 @@ public class Copy {
 			if(type == "A") {
 				bCopy = new BlockA(b.getStart());
 			}
-			if(type == "B") {
+			else if(type == "B") {
 				bCopy = new BlockB(b.getStart());
 			}
 			else {
