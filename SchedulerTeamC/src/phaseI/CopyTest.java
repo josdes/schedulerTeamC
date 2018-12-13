@@ -16,7 +16,7 @@ class CopyTest {
 	@Test
 	void test() {
 		
-		ArrayList<Process> firstList = ProcessGenerator.populateReady(200);
+		ArrayList<Process> firstList = ProcessGenerator.populateReady(2000);
 		printQueue(firstList);
 		ArrayList<Process> copyList = Copy.copyProcesses(firstList);
 		printQueue(firstList);
