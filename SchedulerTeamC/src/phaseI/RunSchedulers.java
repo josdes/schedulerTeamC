@@ -26,6 +26,7 @@ public class RunSchedulers {
 			processList = Copy.copyProcesses(startList);
 			finishedProcesses = new ArrayList<Process>();
 			run(schedulers[i]);
+			
 		}
 	}
 	

@@ -88,4 +88,15 @@ public abstract class Process {
 		workDone += num;
 	}
 	
+	public String generateBlockReport() {
+		String report = "Block Report \n";
+		for(int i= 0; i<blockList.size(); i++) {
+			report = report + blockList.get(i).generateReport() + "\n";
+		}
+		return report;
+	}
+	
+	public String generateReport() {
+		
+	}
 }

@@ -22,4 +22,11 @@ public abstract class Block {
 		work -= num;
 	}
 	
+	public String generateReport() {
+		return "Resource: " + getResource() + 
+				" --- Block Length: " + getWork() +
+				" --- Start Time: " + getStart() +
+				"\n";
+	}
+	
 }
