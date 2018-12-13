@@ -10,7 +10,8 @@ public class RunSchedulers {
 	public static leastDone leastD = new leastDone();
 	public int timeLimit = 25000;
 	public ArrayList<Process> startList = ProcessGenerator.populateReady(timeLimit);
-	public ArrayList<Process> processList = startList;
+	public ArrayList<Process> processList;
+	public ArrayList<Process> finishedProcesses = new ArrayList<Process>();
 	
 	public Scheduler fifo = new Scheduler(falseProcess, false);
 	public Scheduler rr = new Scheduler(falseProcess, true);
@@ -22,6 +23,8 @@ public class RunSchedulers {
 	
 	public void runAll() {
 		for(int i = 0; i<schedulers.length; i++) {
+			processList = Copy.copyProcesses(startList);
+			finishedProcesses = new ArrayList<Process>();
 			run(schedulers[i]);
 		}
 	}
@@ -65,6 +68,7 @@ public class RunSchedulers {
 				}
 				//otherwise the process is just done, and we can get rid of it  
 				else {
+					finishedProcesses.add(process);
 					updateTime = wL;
 					//add whatever blocked to the block queue and keep gong
 					if(blocks) {

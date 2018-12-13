@@ -7,6 +7,7 @@ public abstract class Process {
 	int work; 
 	int workDone = 0;
 	int timeOn;
+	int finishTime;
 	ArrayList<Block> blockList = new ArrayList<Block>();
 	
 	public Process(int p, int t) {
@@ -22,6 +23,14 @@ public abstract class Process {
 	
 	public Boolean isDone() {
 		return workDone == work;
+	}
+	
+	public int getFinish() {
+		return finishTime;
+	}
+	
+	public void setFinish(int n) {
+		finishTime = n;
 	}
 	
 	public int getPriority() {
