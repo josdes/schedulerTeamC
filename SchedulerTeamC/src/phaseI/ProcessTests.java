@@ -16,6 +16,12 @@ class ProcessTests {
 		
 		assertEquals(SampleProcessA.getType(), 1);
 		assertTrue((25 <= (SampleProcessA.generateWork())) && SampleProcessA.generateWork() <= 75);
+		assertEquals(SampleProcessB.getType(), 2);
+		assertTrue(SampleProcessA.generateWork() <= 600);
+		assertEquals(SampleProcessC.getType(), 3);
+		assertTrue(SampleProcessC.generateWork() <= 500);
+		assertEquals(SampleProcessD.getType(), 4);
+		assertTrue((400 <= (SampleProcessD.generateWork())) && SampleProcessD.generateWork() <= 1000);
 		
 
 	}
