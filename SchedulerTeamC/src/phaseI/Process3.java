@@ -6,7 +6,7 @@ public class Process3 extends Process {
 	}
 	
 	public int getType() {
-		return 2;
+		return 3;
 	}
 	
 	public int generateWork() { 

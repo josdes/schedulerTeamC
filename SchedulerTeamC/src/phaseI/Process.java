@@ -3,11 +3,11 @@ package phaseI;
 import java.util.ArrayList;
 
 public abstract class Process {
-    int priority; 
-	int work; 
-	int workDone = 0;
-	int timeOn;
-	int finishTime;
+    public int priority; 
+	public int work; 
+	public int workDone = 0;
+	public int timeOn;
+	public int finishTime;
 	ArrayList<Block> blockList = new ArrayList<Block>();
 	
 	public Process(int p, int t) {
@@ -45,8 +45,16 @@ public abstract class Process {
 		return work;
 	}
 	
+	public void setWork(int w) {
+		work = w;
+	}
+	
 	public int getWorkDone() {
 		return workDone;
+	}
+	
+	public void setWorkDone(int n) {
+		workDone = n;
 	}
 	
 	public int getWorkLeft() {
@@ -88,15 +96,12 @@ public abstract class Process {
 		workDone += num;
 	}
 	
+
 	public String generateBlockReport() {
 		String report = "Block Report \n";
 		for(int i= 0; i<blockList.size(); i++) {
 			report = report + blockList.get(i).generateReport() + "\n";
 		}
 		return report;
-	}
-	
-	public String generateReport() {
-		
-	}
+	} 
 }

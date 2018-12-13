@@ -12,10 +12,20 @@ public class Queue<X> {
 	
 	public void addIn(X next) {
 		int i = 0;
-		while(!(pred.p(next, queue.get(i))) && i<=queue.size()) {
-			i++;
+		if(isEmpty()) {
+			addFront(next);
 		}
-		queue.add(i, next);
+		else {
+			while(i<queue.size() && !pred.p(next, queue.get(i))) {
+				i++;
+			}
+			if (i == queue.size()) {
+				queue.add(next);
+			}
+			else {
+				queue.add(i, next);
+			}
+		}
 	}
 	
 	public void addFront(X next) {
