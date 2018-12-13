@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Queue<X> { 
 	public ArrayList<X> queue = new ArrayList<X>();
-	public Test<X> pred;
+	public Pred<X> pred;
 
-	public Queue(Test<X> pred) {
+	public Queue(Pred<X> pred) {
 		this.pred = pred;
 	}
 	

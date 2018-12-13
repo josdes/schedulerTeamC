@@ -7,9 +7,9 @@ public class Scheduler {
 	public Queue<Process> A, B, C = new Queue<Process>(RunSchedulers.falseProcess);
 	public ArrayList<Queue<Process>> resources = new ArrayList<Queue<Process>>();
 	public Boolean slice;
-	public Test<Process> pred;
+	public Pred<Process> pred;
 	
-	public Scheduler(Test<Process> pred, Boolean slice) {
+	public Scheduler(Pred<Process> pred, Boolean slice) {
 		this.slice = slice;
 		this.pred = pred;
 		readyQueue = new Queue<Process>(pred);

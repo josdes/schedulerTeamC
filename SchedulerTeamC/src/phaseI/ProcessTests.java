@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 class ProcessTests {
-
+	
 	@Test
 	void test() {
 		
@@ -27,14 +27,14 @@ class ProcessTests {
 		assertEquals(SampleProcessD.getType(), 4);
 		assertTrue((400 <= (SampleProcessD.generateWork())) && SampleProcessD.generateWork() <= 1000);
 		
-		//assertEquals(ProcessGenerator.populateReady(0), ArrayList<Process>()); I don't know why it isn't letting me return an empty ArrayList<Process>. They're everywhere.
-		
-		
-		
-		
-		
-		
-
+		int size1 = SampleProcessA.getBlockList().size();
+		assertTrue(size1 == 0 || size1 == 1);
+		int size2 = SampleProcessB.getBlockList().size();
+		assertTrue(size2 == 0);
+		int size3 = SampleProcessC.getBlockList().size();
+		assertTrue(size3 > 0);
+		int size4 = SampleProcessD.getBlockList().size();
+		assertTrue(size4 > 0);
 	}
 
 }

@@ -8,10 +8,11 @@ public class ProcessGenerator {
 		ArrayList<Process> getReady = new ArrayList<Process>(); 
 		int current = 0;
 		int time = 0;
-		while (current <= limit) {
+		while (current < limit) {
 			Process next = generateProcess(time);
 			time += RandomNumberGenerator.random(10, 810);
 			current += next.getWork();
+			getReady.add(next);
 		}
 		return getReady;
 	}
