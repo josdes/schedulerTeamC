@@ -79,7 +79,7 @@ class SchedulerTest {
 			System.out.println(" ");
 		}
 		
-		left.updateBlocks(10);   
+		left.updateBlocks(10, "D");   
 		try { 
 			assertTrue(left.A.getNext() == temp1);
 		}
@@ -87,7 +87,7 @@ class SchedulerTest {
 			System.out.println(" ");
 		}
 		
-		left.updateBlocks(10); 
+		left.updateBlocks(10, "D"); 
 		try {  
 			assertTrue(left.readyQueue.getNext().getTimeOn() == temp1.getTimeOn());
 		}

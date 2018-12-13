@@ -21,6 +21,13 @@ public class RunSchedulers {
 	
 	public Scheduler[] schedulers = {fifo, rr, shortest, left, done};
 	
+	public void printProcessList(ArrayList<Process> q) {
+		System.out.println("");
+		for(int i = 0; i<q.size(); i++) {
+			System.out.print(q.get(i).getType() + " ");
+		}
+	}
+	
 	public void generateBeginReport() {
 		int totalRunning = 0;
 		int totalBlocking = 0; 
@@ -82,9 +89,10 @@ public class RunSchedulers {
 	}
 	
 	public void runAll() {
-		generateBeginReport();
+		//generateBeginReport();
 		for(int i = 0; i<schedulers.length; i++) {
 			processList = Copy.copyProcesses(startList);
+			printProcessList(processList);
 			finishedProcesses = new ArrayList<Process>();
 			run(schedulers[i]);
 			generateEndReport();
@@ -95,17 +103,19 @@ public class RunSchedulers {
 		int clock = 0;  
 		int timeSlice = 100;  
 		while(!((scheduler.isDone()) && processList.isEmpty())) {  
-			while(processList.get(0).getTimeOn()<= clock) {
+			while(!(processList.isEmpty()) &&
+					(processList.get(0).getTimeOn()<= clock)){
 				System.out.println("Adding process");
 				scheduler.addIn(processList.get(0));
 				processList.remove(0); 
 			}
 			
 			int updateTime = 0;
+			Boolean blocks = false;
+			String blocksOn = "D";
 			try{
 				Process process = scheduler.getNext();
-				int wL;
-				Boolean blocks;
+				int wL; 
 				//at this point we know there is a next process so we have to treat
 				// that process in the way that we should
 				try {
@@ -114,6 +124,7 @@ public class RunSchedulers {
 					// to get to that block
 						wL = block.getStart() - process.getWorkDone();
 						blocks = true;
+						blocksOn = block.getResource();
 						System.out.println("Next process on ready has block");
 					}
 				catch (Exception e0){
@@ -137,9 +148,14 @@ public class RunSchedulers {
 					if(blocks) {
 						System.out.println("Adding process to block queue");
 						scheduler.addBlock(process);
+						System.out.println(scheduler.A.isEmpty());
+						System.out.println(scheduler.B.isEmpty());
+						System.out.println(scheduler.C.isEmpty());
+						System.out.println(blocksOn);
 					}
 					else {
 						System.out.println("Adding process to finished list");
+						process.finishTime = clock + wL;
 						finishedProcesses.add(process); 
 					}
 					updateTime = wL;
@@ -163,17 +179,17 @@ public class RunSchedulers {
 				}
 				ArrayList<Queue<Process>> r = scheduler.resources;
 				System.out.println("Finding lowest time in blocks");
-				for(int i = 0; i<r.size(); i++) {
+				for(int j = 0; j<r.size(); j++) {
 					 try {
-						 System.out.println(i);
-						 Block first = r.get(i).getNext().getBlockList().get(0);
-						 int temp = first.getStart();
+						 System.out.println(j);
+						 Block first = r.get(j).getNext().getBlockList().get(0);
+						 int temp = first.getWork() + clock;
 						 if (temp < lowestTime) {
 							 lowestTime = temp;
 						 }
 					 }
 					 catch (Exception eB) {
-						 System.out.println("Nothing on block: " + i);
+						 System.out.println("Nothing on block: " + j);
 					 }
 				 }
 				 if (lowestTime < (int) Integer.MAX_VALUE) {
@@ -185,10 +201,15 @@ public class RunSchedulers {
 			}  
 			System.out.println("Updating blocks");
 			// but we need to update the blocks by the amount of work we did
-			scheduler.updateBlocks(updateTime); 
+			if(blocks) {
+				scheduler.updateBlocks(updateTime, blocksOn);
+			}
+			else {
+				scheduler.updateBlocks(updateTime, "D");
+			}
 			//this should put blocks back on the ready queue, or let a process 
 			// come off the process list when we loop
-			System.out.println("Updating clock");
+			System.out.println("Updating clock by: " + updateTime);
 			clock += updateTime;
 		}
 	}

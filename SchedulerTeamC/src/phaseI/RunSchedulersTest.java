@@ -22,8 +22,6 @@ class RunSchedulersTest {
 		}
 		assertTrue(temp);
 		
-		testRun.processList = ProcessGenerator.populateReady(2000);
-		testRun.run(testRun.fifo);
 		
 	}
 

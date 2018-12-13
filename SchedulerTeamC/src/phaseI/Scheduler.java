@@ -56,17 +56,39 @@ public class Scheduler {
 			resources.get(0).addIn(proc);
 		}
 		if(res == "B") {
-			resources.get(0).addIn(proc);
+			resources.get(1).addIn(proc);
 		}
 		if(res == "C") {
-			resources.get(0).addIn(proc);
+			resources.get(2).addIn(proc);
+		}
+	}
+	public void addBlockFront(Process proc) {
+		String res = proc.blockList.get(0).getResource();
+		if(res == "A") {
+			resources.get(0).addFront(proc);
+		}
+		if(res == "B") {
+			resources.get(1).addFront(proc);
+		}
+		if(res == "C") {
+			resources.get(2).addFront(proc);
 		}
 	}
 	
-	public void updateBlocks(int num) {
-		for(int i = 0; i < resources.size(); i++) {
+	public void updateBlocks(int num, String skipFirst) {
+		for(int i = 0; i < resources.size(); i++) { 
 			int decrement = num;
 			Boolean go = true; 
+			Process hold = new Process1(-1, -1);
+			if((skipFirst == "A" && i == 0) ||
+				(skipFirst == "B" && i == 1) ||
+				(skipFirst == "C" && i ==2)) {
+				try {
+					hold = resources.get(i).pop();
+				} catch (Exception e) {  
+					System.out.println("MAJOR PROBLEM");
+				}
+			}
 			while(go) {
 				try {
 					//remove the first process from the block dude
@@ -103,6 +125,9 @@ public class Scheduler {
 				// we just keep going
 					go = false;
 				}
+			}
+			if(!(hold.getTimeOn() == -1)) {
+				addBlockFront(hold);
 			}
 		}
 	}
