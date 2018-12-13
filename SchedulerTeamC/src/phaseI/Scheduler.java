@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Scheduler {
 	public Queue<Process> readyQueue;
-	public Queue<Process> A, B, C = new Queue<Process>(RunSchedulers.falseProcess);
+	public Queue<Process> A = new Queue<Process>(RunSchedulers.falseProcess);
+	public Queue<Process> B = new Queue<Process>(RunSchedulers.falseProcess);
+	public Queue<Process> C = new Queue<Process>(RunSchedulers.falseProcess);
 	public ArrayList<Queue<Process>> resources = new ArrayList<Queue<Process>>();
 	public Boolean slice;
 	public Pred<Process> pred;
@@ -27,7 +29,7 @@ public class Scheduler {
 	}
 	
 	public Boolean isDone() {
-		return readyQueue.isEmpty() && A.isEmpty() && B.isEmpty() && C.isEmpty();
+		return (readyQueue.isEmpty() && A.isEmpty() && B.isEmpty() && C.isEmpty());
 	}
 	
 	public Process getNext() throws Exception{
@@ -86,7 +88,7 @@ public class Scheduler {
 					}
 					else {
 						//otherwise we want to lower the number by the amount of work we did
-						decrement -= top.getWork();
+						decrement -= nextBlock.getWork();
 						//we want to get rid of that block
 						top.blockList.remove(0);
 						//and we want to add the blocked item back into the readyQUeue
