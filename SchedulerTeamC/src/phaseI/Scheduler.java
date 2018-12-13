@@ -106,20 +106,4 @@ public class Scheduler {
 			}
 		}
 	}
-
-	public void generateReadyQueueReport() throws Exception
-	{
-		ArrayList<Process> q = readyQueue.getQueue();
-
-		for (int i=0; i<readyQueue.getLength(); i++)
-		{
-			System.out.println("Process ID: " + i);
-			System.out.println("Process Type: " + q.get(i).getType());
-			System.out.println("Process Arrival Time: " + q.get(i).getTimeOn());
-			System.out.println("Process Running Time: " + q.get(i).getWork());
-			System.out.println("Blocks: " + q.get(i).generateBlockReport());
-			System.out.println("Total Block Time: " + q.get(i).getBlockTotal());
-			System.out.println("Total Running Time: " + (q.get(i).getWork() + q.get(i).getBlockTotal()));
-		}
-	}
 }

@@ -22,6 +22,8 @@ class RunSchedulersTest {
 		}
 		assertTrue(temp);
 		
+		testRun.run(testRun.fifo);
+		
 	}
 
 }

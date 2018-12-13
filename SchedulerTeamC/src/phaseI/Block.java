@@ -23,10 +23,10 @@ public abstract class Block {
 	}
 	
 	public String generateReport() {
-		return "Resource: " + getResource() + 
+		return "\n"+
+				"Resource: " + getResource() + 
 				" --- Block Length: " + getWork() +
-				" --- Start Time: " + getStart() +
-				"\n";
+				" --- Start Time: " + getStart();
 	}
 	
 }

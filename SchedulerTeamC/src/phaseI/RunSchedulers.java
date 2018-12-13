@@ -21,19 +21,80 @@ public class RunSchedulers {
 	
 	public Scheduler[] schedulers = {fifo, rr, shortest, left, done};
 	
+	public void generateBeginReport() {
+		int totalRunning = 0;
+		int totalBlocking = 0; 
+		int type1Count = 0;
+		int type2Count = 0;
+		int type3Count = 0;
+		int type4Count = 0;
+		for (int i=0; i<startList.size(); i++)
+		{ 
+			System.out.println("Process ID: " + i);
+			int tempType = startList.get(i).getType();
+			System.out.println("Process Type: " + tempType);
+			System.out.println("Process Arrival Time: " + startList.get(i).getTimeOn());
+			int runTime = startList.get(i).getWork();
+			System.out.println("Process Running Time: " + runTime);
+			System.out.println(startList.get(i).generateBlockReport());
+			int blockTime = startList.get(i).getBlockTotal();
+			System.out.println("Total Block Time: " + blockTime);
+			int totalTime = runTime+blockTime;
+			System.out.println("Total Running Time: " + totalTime);
+			totalRunning += runTime;
+			totalBlocking += blockTime; 
+			if(tempType == 1) {
+				type1Count ++;
+			}
+			if(tempType == 2) {
+				type2Count ++;
+			}
+			if(tempType == 3) {
+				type3Count ++;
+			}
+			if(tempType == 4) {
+				type4Count ++;
+			}
+		}
+
+		int total = totalRunning + totalBlocking;
+		System.out.println("");
+		System.out.println("QUEUE SUMMARY");
+		System.out.println("Running for Queue: " + totalRunning);
+		System.out.println("Blocking for Queue: " + totalBlocking);
+		System.out.println("Total Running for Queue: " + total);
+		System.out.print("Processes of Type: 1 = " + type1Count +
+				"     ---     2 = " + type2Count +
+				"     ---     3 = " + type3Count +
+				"     ---     4 = " + type4Count );
+	}
+	
+	public void generateEndReport() {
+		for(int i = 0; i < finishedProcesses.size(); i++) {
+			Process current = finishedProcesses.get(i);
+			System.out.println("Arrived at: " + current.timeOn);
+			System.out.println("Finished at: " + current.finishTime);
+			int tempWork = current.work;
+			int tempBlock = current.getBlockTotal();
+			int tempIdeal = tempWork + tempBlock;
+			System.out.println("Ideal finished time: " + tempIdeal);
+		}
+	}
+	
 	public void runAll() {
+		generateBeginReport();
 		for(int i = 0; i<schedulers.length; i++) {
 			processList = Copy.copyProcesses(startList);
 			finishedProcesses = new ArrayList<Process>();
 			run(schedulers[i]);
-			
+			generateEndReport();
 		}
 	}
 	
 	public void run(Scheduler scheduler) { 
-		int clock = 0;  
+		int clock = processList.get(0).getTimeOn();  
 		int timeSlice = 40; 
-		while(!scheduler.isDone() && !(clock == 0)) {  
+		while(!scheduler.isDone() && !(clock == processList.get(0).getTimeOn())) {  
 			int index = 0;
 			while(processList.get(index).getTimeOn()<= clock) {
 				scheduler.addIn(processList.get(index));
