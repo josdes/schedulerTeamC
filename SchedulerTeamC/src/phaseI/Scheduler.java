@@ -104,4 +104,18 @@ public class Scheduler {
 			}
 		}
 	}
+
+	public void generateReadyQueueReport()
+	{
+		for (i=0, i<readyQueue.getLength(), i++)
+		{
+			System.out.println("Process ID: " + i);
+			System.out.println("Process Type: " + readyQueue[i].getType());
+			System.out.println("Process Arrival Time: " + readyQueue[i].getTimeOn());
+			System.out.println("Process Running Time: " + readyQueue[i].getWork());
+			System.out.println("Blocks: " + readyQueue[i].generateBlockReport());
+			System.out.println("Total Block Time: " + readyQueue[i].getBlockTotal());
+			System.out.println("Total Running Time: " + (readyQueue[i].getWork() + readyQueue[i].getBlockTotal());
+		}
+	}
 }
