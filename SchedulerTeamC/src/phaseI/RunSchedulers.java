@@ -150,7 +150,7 @@ public class RunSchedulers {
 				// the time it takes for the next process to get on the readyQueue
 				// this can either be something coming off the blockQueue or 
 				// something joining the ready queue
-				int lowestTime = (int) Integer.MIN_VALUE; 
+				int lowestTime = (int) Integer.MAX_VALUE; 
 				try {
 					int tempTimeOn = processList.get(0).getTimeOn();
 					if (tempTimeOn < lowestTime) {
@@ -161,10 +161,11 @@ public class RunSchedulers {
 					System.out.println("No processes left in the list");
 					//there were no processes left on the list, everything is on the block queues
 				}
-				 ArrayList<Queue<Process>> r = scheduler.resources;
-				 System.out.println("Finding lowest time in blocks");
-				 for(int i = 0; i<r.size(); i++) {
+				ArrayList<Queue<Process>> r = scheduler.resources;
+				System.out.println("Finding lowest time in blocks");
+				for(int i = 0; i<r.size(); i++) {
 					 try {
+						 System.out.println(i);
 						 Block first = r.get(i).getNext().getBlockList().get(0);
 						 int temp = first.getStart();
 						 if (temp < lowestTime) {
@@ -172,9 +173,15 @@ public class RunSchedulers {
 						 }
 					 }
 					 catch (Exception eB) {
+						 System.out.println("Nothing on block: " + i);
 					 }
 				 }
-				 updateTime = lowestTime - clock; 
+				 if (lowestTime < (int) Integer.MAX_VALUE) {
+					 updateTime = lowestTime - clock;
+				 }
+				 else {
+					 System.out.println("HUGE PROBLEM");
+				 }
 			}  
 			System.out.println("Updating blocks");
 			// but we need to update the blocks by the amount of work we did
